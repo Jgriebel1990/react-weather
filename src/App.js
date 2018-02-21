@@ -10,6 +10,7 @@ class App extends Component {
     };
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLonChange = this.handleLonChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleLatChange(e) {
@@ -22,19 +23,23 @@ class App extends Component {
       lon: +e.target.value
     });
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    
+  }
   render() {
     return (
       <div>
         <h1>WEATHER!!!</h1>
         <p>Enter your latitude and Longitude to find the WEATHER</p>
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label>
             Latitude:
             <input
               type="number"
               min="-90"
               max="90"
-              onChange={e => this.handleLatChange(e)}
+              onChange={(e) => this.handleLatChange(e)}
               value={this.state.lat}
               required />
           </label>
@@ -44,7 +49,7 @@ class App extends Component {
               type="number"
               min="-180"
               max="180"
-              onChange={e => this.handleLonChange(e)}
+              onChange={(e) => this.handleLonChange(e)}
               value={this.state.lon}
               required />
           </label>
