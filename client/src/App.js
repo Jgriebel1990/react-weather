@@ -3,7 +3,7 @@ import "./App.css";
 import { getWeather } from "./services/weather";
 
 const CurrentWeather = props => {
-  return(
+  return (
     <section>
       <ul>
         <li>Time: {props.time}</li>
@@ -12,8 +12,8 @@ const CurrentWeather = props => {
         <li>Temperature: {props.temperature}</li>
       </ul>
     </section>
-  )
-}
+  );
+};
 class App extends Component {
   constructor() {
     super();
@@ -83,7 +83,9 @@ class App extends Component {
         </form>
         {Object.keys(this.state.currentWeather).length === 0 ? (
           ""
-        ) : <CurrentWeather {...this.state.currentWeather}/>}
+        ) : (
+          <CurrentWeather {...this.state.currentWeather} />
+        )}
       </div>
     );
   }
