@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import { getWeather } from "./services/weather";
+import { isEmptyObject } from './utils';
 import CurrentWeather from './CurrentWeather';
+
 
 
 class App extends Component {
@@ -29,7 +31,6 @@ class App extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log("submitting some things and shit");
     getWeather(this.state.lat, this.state.lon)
       .then(response => {
         const currentWeather = response.data.currently;
@@ -71,11 +72,9 @@ class App extends Component {
           </label>
           <button type="submit">WEATHER!!!</button>
         </form>
-        {Object.keys(this.state.currentWeather).length === 0 ? (
-          ""
-        ) : (
-          <CurrentWeather {...this.state.currentWeather} />
-        )}
+        { isEmptyObject(this.state.currentWeather) ?
+          "" : 
+          <CurrentWeather {...this.state.currentWeather} />}
       </div>
     );
   }
